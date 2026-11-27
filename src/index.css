@@ -1,0 +1,27 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "../components";
+
+@theme inline {
+  --color-background: var(--activity-background);
+  --color-foreground: var(--activity-foreground);
+  --color-muted: var(--activity-muted);
+  --color-muted-foreground: var(--activity-muted-foreground);
+  --color-popover: var(--activity-popover);
+  --color-border: var(--activity-border);
+  --color-ring: var(--activity-ring);
+}
+
+:root {
+  --activity-background: #090909;
+  --activity-foreground: #ffffff;
+  --activity-muted: #1e1e1e;
+  --activity-muted-foreground: rgb(180.54, 180.54, 180.54);
+  --activity-popover: #151515;
+  --activity-border: rgba(255, 255, 255, 0.12);
+  --activity-ring: rgb(6, 213, 147);
+}
+
+#root {
+  display: contents;
+}
