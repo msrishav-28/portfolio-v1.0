@@ -4,65 +4,6 @@
     box-sizing: border-box;
 }
 
-#activity-section {
-    line-height: 1.2;
-    padding: 5rem 0;
-
-    .title-section {
-        margin-bottom: 1rem;
-
-        .title {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1rem;
-
-            .left {
-                font-size: var(--font-size-3xl);
-                line-height: 1.2;
-                font-weight: 500;
-            }
-
-            .right {
-                font-family: var(--font-mono);
-                color: var(--dull-color);
-            }
-        }
-
-        .desc {
-            color: var(--dull-color);
-        }
-    }
-
-    .activity-container {
-        width: 100%;
-    }
-
-    .activity-card {
-        margin-top: 2rem;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    #activity-section {
-        .title-section {
-            .title {
-                flex-direction: row;
-                gap: 0;
-                justify-content: space-between;
-                align-items: flex-end;
-                margin-bottom: 1rem;
-
-                .left {
-                    font-size: var(--font-size-4xl);
-                    line-height: 1.11;
-                    font-weight: 500;
-                }
-            }
-        }
-    }
-}
-
 :root {
     --primary-background-color: #000000;
     --secondary-background-color: #ffffff;
@@ -101,7 +42,7 @@
     --global-border-radius: 0.65rem;
 }
 
-/* Utitlity classes */
+
 .text-small {
     font-size: var(--font-size-small);
     line-height: 1.43;
@@ -161,13 +102,13 @@ body {
 
 .no-select {
     -webkit-user-select: none;
-    /* Safari */
+
     -moz-user-select: none;
-    /* Firefox */
+
     -ms-user-select: none;
-    /* Internet Explorer/Edge */
+
     user-select: none;
-    /* Standard property */
+
 }
 
 .main-container {
@@ -175,26 +116,26 @@ body {
     min-height: 100vh;
 }
 
-/* BASE MOBILE SCREEN */
+
 main {
     padding: 0 1.5rem;
     line-height: normal;
     transition: all 0.5s ease-in-out 0.2s;
 }
 
-/* Navigation-bar */
+
 nav {
     display: none;
     padding: 1.5rem 0;
 
-    /* glass effect */
+
     background: rgba(15, 15, 15, 0.55);
-    /* translucent dark layer */
+
     backdrop-filter: blur(18px) saturate(160%);
-    /* iOS glass look */
+
     -webkit-backdrop-filter: blur(18px) saturate(160%);
 
-    /* subtle border like iOS */
+
     border-left: 1px solid rgba(255, 255, 255, 0.08);
     border-right: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -229,12 +170,12 @@ nav {
                 align-items: center;
             }
 
-            /* default state = show play, hide pause */
+
             .icon-pause {
                 display: none;
             }
 
-            /* when playing (class added by JS) */
+
             #audio-toggle.playing .icon-play {
                 display: none;
             }
@@ -255,16 +196,7 @@ nav {
     }
 }
 
-/* nav::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.08),
-            rgba(255, 255, 255, 0.02));
-    pointer-events: none;
-} */
+
 
 .ping {
     height: 0.6em;
@@ -280,7 +212,7 @@ nav {
     align-items: center;
 }
 
-/* Hero section */
+
 #hero-section {
     display: flex;
     align-items: center;
@@ -448,7 +380,7 @@ nav {
     }
 }
 
-/* Skill section */
+
 #skill-section {
     .body {
         position: relative;
@@ -557,7 +489,7 @@ nav {
 }
 
 #experience-section {
-    /* min-height: 100vh; */
+
     display: flex;
     align-items: center;
 
@@ -707,8 +639,6 @@ nav {
             }
         }
 
-        .exp-item {}
-
         .exp-item:not(:last-child) {
             padding-bottom: 3rem;
         }
@@ -718,7 +648,7 @@ nav {
 #contact-section {
     display: flex;
     align-items: center;
-    /* min-height: 100vh; */
+
     padding: 5rem 0;
 
     .content-group {
@@ -900,7 +830,7 @@ footer {
     }
 }
 
-/* Animations */
+
 @keyframes pulse {
     0% {
         background-color: #1bd066;
@@ -925,9 +855,9 @@ footer {
     }
 }
 
-/* Media queries */
 
-/* Tablets and small laptops (480px - 768px) */
+
+
 @media screen and (min-width: 480px) {
     main {
         padding: 0 6rem;
@@ -952,7 +882,7 @@ footer {
     }
 }
 
-/* Tablets and small laptops (769px - 1024px) */
+
 @media screen and (min-width: 768px) {
     main {
         padding: 0 10rem;
@@ -1132,7 +1062,7 @@ footer {
     }
 }
 
-/* Large desktops and high-resolution screens (1025px and up) */
+
 @media screen and (min-width: 1025px) {
     main {
         padding: 0 12rem;
@@ -1223,7 +1153,7 @@ footer {
     }
 }
 
-/* Extra-large screens (1440px and up) */
+
 @media screen and (min-width: 1440px) {
     main {
         padding: 0 25rem;
