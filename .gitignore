@@ -1,2 +1,7 @@
 node_modules/
 dist/
+qa-results/
+qa-evidence/
+qa-final/
+target-original/
+dev-final/

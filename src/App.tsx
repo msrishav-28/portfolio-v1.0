@@ -1,74 +1,48 @@
-import { useEffect, useState, type ReactNode } from "react";
-import parse, { Element } from "html-react-parser";
-import ActivitySection from "@/components/activity-section";
-import portfolioBodyUrl from "./portfolio-body.html?url";
+import { createElement, useEffect, useMemo } from "react";
+import parse, {
+  attributesToProps,
+  domToReact,
+  Element as HtmlElement,
+  type DOMNode,
+  type HTMLReactParserOptions,
+} from "html-react-parser";
 
-export default function App() {
-  const [portfolio, setPortfolio] = useState<ReactNode>();
-  const [error, setError] = useState<string>();
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function loadPortfolio() {
-      try {
-        const response = await fetch(portfolioBodyUrl);
-        if (!response.ok) {
-          throw new Error(
-            `Portfolio markup failed to load (${response.status}).`,
-          );
-        }
-        const markup = await response.text();
-        const rendered = parse(markup, {
-          replace(node) {
-            if (
-              node instanceof Element &&
-              node.attribs["data-react-island"] === "activity"
-            ) {
-              return <ActivitySection />;
-            }
-            return undefined;
+const parserOptions: HTMLReactParserOptions = {
+  replace(node) {
+    if (node instanceof HtmlElement && node.attribs.style !== undefined) {
+      return createElement(
+        node.name,
+        {
+          ...attributesToProps(node.attribs),
+          ref: (element: Element | null) => {
+            element?.setAttribute("style", node.attribs.style);
           },
-        });
-        if (!cancelled) setPortfolio(rendered);
-      } catch (reason) {
-        if (cancelled) return;
-        setError(
-          reason instanceof Error
-            ? reason.message
-            : "Portfolio markup could not be loaded.",
-        );
-      }
+        },
+        domToReact(node.children as DOMNode[], parserOptions),
+      );
     }
+    return undefined;
+  },
+};
 
-    void loadPortfolio();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+export default function App({ markup }: { markup: string }) {
+  const portfolio = useMemo(() => parse(markup, parserOptions), [markup]);
 
   useEffect(() => {
-    if (!portfolio) return;
     const backToTop = document.getElementById("back-to-top");
     if (!backToTop) return;
 
     const updateVisibility = () => {
-      backToTop.classList.toggle("show", window.scrollY > 1600);
+      if (window.scrollY > 1600) {
+        backToTop.classList.add("show");
+      } else {
+        backToTop.classList.remove("show");
+      }
     };
 
     window.addEventListener("scroll", updateVisibility);
-    updateVisibility();
-
     return () => window.removeEventListener("scroll", updateVisibility);
-  }, [portfolio]);
-
-  if (error) {
-    return (
-      <div role="alert" className="p-6 text-white">
-        {error}
-      </div>
-    );
-  }
+  }, []);
 
   return <>{portfolio}</>;
 }
